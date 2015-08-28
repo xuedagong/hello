@@ -45,6 +45,6 @@ mynode=ListNode(1)
 mynode2=ListNode(2)
 mynode.next=mynode2
 mynode=Solution().reverseList(mynode)
-mynode.print_it()
+mynode.print_it()  ##打印了 2,1
 
         
