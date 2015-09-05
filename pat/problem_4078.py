@@ -36,7 +36,7 @@ if __name__ == '__main__':
     lst=raw_input().split(" ")
     flag=-1
     n=int(lst[0])
-    for i in xrange(1,n+1):
+    for i in xrange(1,n):
         item=int(lst[i])
         if item%5==0:
             if item%2==0:
@@ -55,5 +55,19 @@ if __name__ == '__main__':
     if cnt>0:
         a4=a4*1.0/cnt
         a4=round(a4,1)
+    if a1==0:
+        a1='N'
+
+    if a2==0:
+        a2='N'
+
+    if a3==0:
+        a3='N'
+
+    if a4==0:
+        a4='N'
+    if a5==0:
+        a5='N'
+
     print a1,a2,a3,a4,a5
 
