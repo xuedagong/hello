@@ -27,6 +27,39 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+#根据一行的输入来生成树  
+#   1
+#  /   \
+# 2     3
+#  \
+#   5
+#其输入为 1 2 3 # 5
+def create_tree():
+    
+    lst=raw_input('请输入').split(" ")
+    root=TreeNode(lst[0]);
+    node_lst=[]
+    node_lst.append(root)
+    i=1
+    while i <len(lst):
+        this_node=node_lst[0]
+        if lst[i]!='#':
+            this_node.left=TreeNode( int(lst[i]) )
+            node_lst.append(this_node.left)
+        else:
+            this_node.left=None
+        
+        if lst[i+1]!='#':
+            this_node.right=TreeNode( int(lst[i+1]) )
+            node_lst.append(this_node.right)
+        else:
+            this_node.right=None
+        del node_lst[0]
+        i=i+2
+    return root
+            
+        
+    
 
 class Solution:
     # @param {TreeNode} root
@@ -54,11 +87,13 @@ class Solution:
             self.binaryTreePathsRecu(node.right, path, result)
             path.pop()
 
-node5=TreeNode(5)
-node2=TreeNode(2)
-node3=TreeNode(3)
-node1=TreeNode(1)
-node1.left=node2
-node1.right=node3
-node2.right=node5
+# node5=TreeNode(5)
+# node2=TreeNode(2)
+# node3=TreeNode(3)
+# node1=TreeNode(1)
+# node1.left=node2
+# node1.right=node3
+# node2.right=node5
+node1=create_tree()
+
 print Solution().binaryTreePaths(node1)
