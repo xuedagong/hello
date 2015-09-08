@@ -21,6 +21,7 @@
 输出样例：
 12:42:59
 '''
+#coding=utf-8
 if __name__=="__main__":
     a,b=raw_input().split(" ")
     a=int(a)
