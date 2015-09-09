@@ -43,7 +43,7 @@ def get_han(i):
         return 'qi'
     elif i=='8':
         return 'ba'
-    elif i==9:
+    elif i=='9':
         return 'jiu'
     else:
         return ''
