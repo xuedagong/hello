@@ -36,7 +36,7 @@ if __name__ == '__main__':
     lst=raw_input().split(" ")
     flag=-1
     n=int(lst[0])
-    for i in xrange(1,n):
+    for i in xrange(1,n+1):
         item=int(lst[i])
         if item%5==0:
             if item%2==0:
