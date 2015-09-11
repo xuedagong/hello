@@ -65,25 +65,26 @@ def get_one_s(a,b):
 def get_most_one(lst):
     if len(lst)==0:#为空数组
         return 'B'
-    dicts={}
+    b_cnt,c_cnt,j_cnt=0,0,0
+    max=0
+    max_str=''
     for item in lst:
-        if item not in dicts:
-            dicts[item]=1
-        else:
-            dicts[item]+=1
-    val_lst=[]
-    for k in dicts:
-        val_lst.append(dicts[k])
-
-    val_lst.sort(reverse=True)
-    maxs=val_lst[0]
-    key_lst=[]
-    for (k, v) in dicts.items():
-        if maxs==v:
-            key_lst.append(k)
-    key_lst.sort()
-    return key_lst[0]
-
+        if item=='B':
+            b_cnt+=1
+        elif item=='C':
+            c_cnt+=1
+        elif item=='J':
+            j_cnt+=1
+    if b_cnt>max:
+        max=b_cnt
+        max_str='B'
+    if c_cnt>max:
+        max=c_cnt
+        max_str='C'
+    if j_cnt>max:
+        max=j_cnt
+        max_str='J'
+    return max_str
 
 
 

@@ -36,46 +36,47 @@ D表示市场最大需求量。随后一行给出N个正数表示每种月饼的
 # print 72*1.0/15
 # print 45*1.0/10
 # print 75*1.0/18
-if __name__ == '__main__':
-    n,need=raw_input().split(" ")
-    n=int(n)  #多少种月饼
-    need=int(need)
-    kucun=raw_input().split(" ")
-    money_list=raw_input().split(" ")
-    for i in xrange(n):
-        kucun[i]=int(kucun[i])
-        money_list[i]=int(money_list[i])
 
-    money_p=[]
-    for i in xrange(n):
-        if kucun[i]>0:
-            money_p.append( money_list[i]*1.0/kucun[i])
-        else:
-            money_p.append( 0.0)
+n,need=raw_input().split(" ")
+n=int(n)  #多少种月饼
+need=int(need)
+kucun=raw_input().split(" ")
+money_list=raw_input().split(" ")
+for i in xrange(n):
+    kucun[i]=int(kucun[i])
+    money_list[i]=int(money_list[i])
 
-    dicts={}
-    for i in xrange(n):
-        dicts[i]=money_p[i]
+money_p=[]
+for i in xrange(n):
+    if kucun[i]>0:
+        money_p.append( money_list[i]*1.0/kucun[i])
+    else:
+        money_p.append( 0.0)
 
-    money_p_cp=money_p[:]
-    money_p.sort(reverse=True)
-    sort_index=[]
-    for i in xrange(n):
-        for (k,v) in dicts.items():
-            if v==money_p[i]:
-                sort_index.append(k)
-                del dicts[k]
-                break
-    # print sort_index
-    sum=0.0
-    total=need
-    for index_i in sort_index:
-        if total>kucun[index_i]:
-            total=total-kucun[index_i]
-            sum+= kucun[index_i]*money_p_cp[index_i]
-        else:
-            sum+= total*money_p_cp[index_i]
+dicts={}
+for i in xrange(n):
+    dicts[i]=money_p[i]
+
+money_p_cp=money_p[:]
+money_p.sort(reverse=True)
+sort_index=[]
+for i in xrange(n):
+    for (k,v) in dicts.items():
+        if v==money_p[i]:
+            sort_index.append(k)
+            del dicts[k]
             break
-    print '%.2f'%sum
+# print sort_index
+sum=0.0
+total=need
+for index_i in sort_index:
+    if total>kucun[index_i]:
+        total=total-kucun[index_i]
+        sum+= kucun[index_i]*money_p_cp[index_i]
+    else:
+        sum+= total*money_p_cp[index_i]
+        break
+print '%.2f'%sum
+exit(0)
 
 
