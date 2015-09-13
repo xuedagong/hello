@@ -26,10 +26,29 @@
 1 2/3 * 0 = 0
 1 2/3 / 0 = Inf
 '''
+#coding=utf-8
+#求x,y的最大公约数
+def hcf(x,y):
+    if x>y:
+        smaller=y
+    else:
+        smaller=x
+    hcfs=1
+    for i in range(1,smaller+1):
+        if  x%i==0 and y%i==0:
+            hcfs=i
+    return hcfs
 #把一个输入的有理数转为最简单的类型
-def get_good(strs):
-    a,b=map(int, strs.split("/") );
+def get_good(lst):
+    a,b=lst[0],lst[1];
+    if b==0:
+        return "Inf"
+    if a==0:
+        return "0"
+
     a_abs=abs(a)
+    hcfs=hcf(a_abs,b)
+    a_abs,b=a_abs/hcfs,b/hcfs
     str_lst=[]
     zhengshu=a_abs/b
     yushu = a_abs%b
@@ -47,30 +66,51 @@ def get_good(strs):
         return res
 
 #根据str1 ，str2返回其计算结果
-def get_add(str1,str2):
-    lst1=map(int,str1.split('/'))
-    lst2=map(int,str2.split("/"))
-    com1=hcf(abs(lst1[0]),abs(lst1[1]))
-    com2=hcf(abs(lst2[0]),abs(lst2[1]))
-    lst1[]
+def get_add(lst1,lst2):
+    new_lst=[]
+    new_lst.append( lst1[0]*lst2[1]+lst1[1]*lst2[0])
+    new_lst.append(  lst1[1]*lst2[1] )
+    return new_lst
 
-#求x,y的最大公约数
-def hcf(x,y):
-    if x>y:
-        smaller=y
+def get_minus(lst1,lst2):
+    new_lst=[]
+    new_lst.append( lst1[0]*lst2[1]-lst1[1]*lst2[0] )
+    new_lst.append(  lst1[1]*lst2[1] )
+    return new_lst
+
+def get_mul(lst1,lst2):
+    new_lst=[]
+    new_lst.append(  lst1[0]*lst2[0]  )
+    new_lst.append(  lst1[1]*lst2[1]  )
+    return new_lst
+
+def get_div(lst1,lst2):
+    new_lst=[]
+    if lst1[0]*lst2[0]<0:
+        flag=-1
     else:
-        smaller=x
-    for i in range(1,smaller+1):
-        if  x%i==0 and y%i==0:
-            hcf=i
-    return hcf
+        flag=1
+    new_lst.append(  flag* abs( lst1[0]*lst2[1] )  )
+    new_lst.append(  abs( lst1[1]*lst2[0] ) )
+    return new_lst
+
+
+
+
+
 
 
 
 
 if __name__ == '__main__':
-    a_str,b_str=raw_input().split(" ")
-    a_arr=a_
-    print a_str,b_str
-    print get_good(a_str)
-    print get_good(b_str)
+    # print get_good([4,4])
+    # exit(0)
+    str1,str2=raw_input().split(" ")
+    lst1=map(int,str1.split('/'))
+    lst2=map(int,str2.split("/"))
+
+
+    print get_good(lst1),"+",get_good(lst2),"=",get_good( get_add(lst1,lst2) )
+    print get_good(lst1),"-",get_good(lst2),"=",get_good( get_minus(lst1,lst2) )
+    print get_good(lst1),"*",get_good(lst2),"=",get_good( get_mul(lst1,lst2) )
+    print get_good(lst1),"/",get_good(lst2),"=",get_good( get_div(lst1,lst2) )
