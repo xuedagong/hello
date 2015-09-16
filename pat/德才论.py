@@ -29,130 +29,90 @@
 
 输入例子:
 14 60 80
-
 10000001 64 90
-
 10000002 90 60
-
 10000011 85 80
-
 10000003 85 80
-
 10000004 80 85
-
 10000005 82 77
-
 10000006 83 76
-
 10000007 90 78
-
 10000008 75 79
-
 10000009 59 90
-
 10000010 88 45
-
 10000012 80 100
-
 10000013 90 99
-
 10000014 66 60
 
 输出例子:
 12
 
+12
 10000013 90 99
-
 10000012 80 100
-
 10000003 85 80
-
 10000011 85 80
-
 10000004 80 85
-
 10000007 90 78
-
 10000006 83 76
-
 10000005 82 77
-
 10000002 90 60
-
 10000014 66 60
-
 10000008 75 79
-
 10000001 64 90
 '''
+#coding=utf-8
 if __name__ == '__main__':
     lst1=[] #第一类考生 按照总分排名
     lst2=[] #第二类考生 德胜 才  总分排序
     lst3=[] #第三类  均低于H  德分不低于才分 按总分排序
     lst4=[]  #第四类  按照总分排序
-    a,L,H=raw_input().split(" ")
-    a=int(a)
-    L=int(L)
-    H=int(H)
+    a,L,H=map(int, raw_input().split() )
+
     index=0
     cnt=0
     while  index<a:
         index+=1
-        s1,d,c=raw_input().split(" ")
+        s1,d,c=raw_input().split()
         s1=int(s1)
+        yueshu=s1%(a+1)
         d=int(d)
         c=int(c)
         total_lst=[]
         if d>=L and c>=L:
             cnt+=1
             if d>=H and c>=H:
-                news=( (d+c)*100+d )*100000000+(100000000-s1)#占用了5位数字了
-                lst1.append(news)
+                news=( (d+c)*100+d )*(a+1)+(yueshu)#占用了5位数字了
+                lst1.append((s1,d,c,news))
             elif d>=H and c<H:
-                news=( (d+c)*100+d )*100000000+(100000000-s1)#占用了5位数字了
-                lst2.append(news)
+                news=( (d+c)*100+d )*(a+1)+(yueshu)#占用了5位数字了
+                lst2.append((s1,d,c,news))
             elif d<H and c<H and d>=c:
-                news=( (d+c)*100+d )*100000000+(100000000-s1)#占用了5位数字了
-                lst3.append(news)
+                news=( (d+c)*100+d )*(a+1)+(yueshu)#占用了5位数字了
+                lst3.append((s1,d,c,news))
             else:
-                news=( (d+c)*100+d )*100000000+(100000000-s1)#占用了5位数字了
-                lst4.append(news)
-    lst1.sort(reverse=True)
-    lst2.sort(reverse=True)
-    lst3.sort(reverse=True)
-    lst4.sort(reverse=True)
+                news=( (d+c)*100+d )*(a+1)+(yueshu)#占用了5位数字了
+                lst4.append((s1,d,c,news))
+
+
+    # lst2.sort(reverse=True)
+    # lst3.sort(reverse=True)
+    # lst4.sort(reverse=True)
     print cnt
-    for item in lst1:
+    for item in sorted(lst1, key=lambda one_item: one_item[3],reverse=True):
 
-        str1=100000000-(item%100000000)
-        d_c=item/10000000000
-        d=(item%10000000000)/100000000
-        print str1,d,d_c-d
+        print item[0],item[1],item[2]
 
-    for item in lst2:
-        str1=100000000-(item%100000000)
-        d_c=item/10000000000
-        d=(item%10000000000)/100000000
-        print str1,d,d_c-d
+    for item in sorted(lst2, key=lambda one_item: one_item[3],reverse=True):
 
-    for item in lst3:
-        str1=100000000-(item%100000000)
-        d_c=item/10000000000
-        d=(item%10000000000)/100000000
-        print str1,d,d_c-d
+        print item[0],item[1],item[2]
 
-    for item in lst4:
-        str1=100000000-(item%100000000)
-        d_c=item/10000000000
-        d=(item%10000000000)/100000000
-        print str1,d,d_c-d
+    for item in sorted(lst3, key=lambda one_item: one_item[3],reverse=True):
 
-    exit(0)
+        print item[0],item[1],item[2]
 
-    # for item in lst2:
-    #     print item[0],item[1],item[2]
-    #
-    # for item in lst3:
-    #     print item[0],item[1],item[2]
-    # for item in lst4:
-    #     print item[0],item[1],item[2]
+    for item in sorted(lst4, key=lambda one_item: one_item[3],reverse=True):
+
+        print item[0],item[1],item[2]
+
+    exit(0);

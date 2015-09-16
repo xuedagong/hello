@@ -25,20 +25,20 @@
 if __name__=='__main__':
     n=raw_input()
     n=int(n)
-    lst=[]
-    for i in xrange(n+1):
-        lst.append(0)
+    dicts={}
     max_val=0
     max_key=0
     for i in xrange(n):
         a,b=raw_input().split(" ")
         a=int(a)
         b=int(b)
-        lst[a]+=b
-    for i in xrange(n+1):
-        if lst[i]>max_val:
-            max_val=lst[i]
-            max_key=i
+        if  a in dicts:
+            dicts[a]+=b
+        else:
+            dicts[a]=b
+        if dicts[a]>max_val:
+            max_val=dicts[a]
+            max_key=a
     print max_key,max_val
         
         

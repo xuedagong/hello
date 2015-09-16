@@ -36,15 +36,13 @@ D表示市场最大需求量。随后一行给出N个正数表示每种月饼的
 # print 72*1.0/15
 # print 45*1.0/10
 # print 75*1.0/18
-
-n,need=raw_input().split(" ")
+#coding=utf-8
+n,need=raw_input().split()
 n=int(n)  #多少种月饼
 need=int(need)
-kucun=raw_input().split(" ")
-money_list=raw_input().split(" ")
-for i in xrange(n):
-    kucun[i]=int(kucun[i])
-    money_list[i]=int(money_list[i])
+kucun=map(int,raw_input().split() )
+money_list=map(int, raw_input().split() )
+
 
 money_p=[]
 for i in xrange(n):

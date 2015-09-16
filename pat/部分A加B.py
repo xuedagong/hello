@@ -29,7 +29,7 @@ def get_s1_common(s1,s2):
         com_s='0'
     return com_s
 if __name__ == '__main__':
-    s1,s2,s3,s4=raw_input().split(" ")
+    s1,s2,s3,s4=raw_input().split()
     com1=get_s1_common(s1,s2)
     com2=get_s1_common(s3,s4)
     sum=int(com1)+int(com2)
