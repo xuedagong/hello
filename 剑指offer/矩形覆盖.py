@@ -13,7 +13,15 @@ class Solution:
         if number==2:
             return 2
         #如果大于2块，最后一步 的高度可能为 1 或者为 2  转化为 n-1和n-2的情况
-        return self.rectCover(number-1)+self.rectCover(number-2)
+        step_a=1
+        step_b=2
+        now_step=2 #当前台阶为2
+        while now_step<number:
+            temp=step_a
+            step_a=step_b
+            step_b=temp+step_b
+            now_step+=1
+        return step_b
 if __name__ == '__main__':
-    for i in xrange(11):
-        print Solution().rectCover(i)
+    for i in xrange(10):
+        print i,Solution().rectCover(i)
