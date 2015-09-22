@@ -37,57 +37,6 @@ J J
 B B
 '''
 #coding=utf-8
-#根据a,b手势，返回相应的结果
-#C> J >B >C
-#0 表示 平
-# 1表示a赢
-#-1表示a输
-def get_one_s(a,b):
-    if a==b:
-        return 0
-    if a=="C":
-        if b=='J':
-            return 1
-        elif b=='B':
-            return -1
-    elif a=="J":
-        if b=='C':
-            return -1
-        elif b=='B':
-            return 1
-    elif a=="B":
-        if b=='J':
-            return -1
-        elif b=='C':
-            return 1
-
-#根据一个数组返回其中出现次数最多的字母
-def get_most_one(lst):
-    if len(lst)==0:#为空数组
-        return 'B'
-    b_cnt,c_cnt,j_cnt=0,0,0
-    max=0
-    max_str=''
-    for item in lst:
-        if item=='B':
-            b_cnt+=1
-        elif item=='C':
-            c_cnt+=1
-        elif item=='J':
-            j_cnt+=1
-    if b_cnt>max:
-        max=b_cnt
-        max_str='B'
-    if c_cnt>max:
-        max=c_cnt
-        max_str='C'
-    if j_cnt>max:
-        max=j_cnt
-        max_str='J'
-    return max_str
-
-
-
 
 if __name__ == '__main__':
     n=raw_input()
@@ -95,17 +44,58 @@ if __name__ == '__main__':
     win,ping,lose=0,0,0
     a_win=[]
     b_win=[]
+    a_c,a_j,a_b=0,0,0
+    
+    
+    
+    
+    b_c,b_j,b_b=0,0,0
     for i in xrange(n):
-        a,b=raw_input().split(" ")
-        one_result=get_one_s(a,b)
-        if one_result==0:
+        a,b=raw_input().split()
+        if a==b:
             ping+=1
-        elif one_result==1:
+        elif ( a=='C' and b=='J' )  :
             win+=1
-            a_win.append(a)
-        else:
+            a_c+=1
+        elif ( a=='J' and b=='B' ) :
+            win+=1
+            a_j+=1
+        elif ( a=='B' and b=='C' ) :
+            win+=1
+            a_b+=1
+            
+        elif ( a=='J' and b=='C' )  :
             lose+=1
-            b_win.append(b)
+            b_c+=1
+        elif ( a=='B' and b=='J' )  :
+            lose+=1
+            b_j+=1
+        elif ( a=='C' and b=='B' ) :
+            lose+=1
+            b_b+=1
+     
+    a_max_str='B'
+    a_max=a_b
+    
+    b_max_str='B'
+    b_max=b_b
+    
+    if a_c>a_max:
+        a_max=a_c
+        a_max_str='C'
+    
+    if a_j>a_max:
+        a_max=a_j
+        a_max_str='J'
+        
+    if b_c>b_max:
+        b_max=a_c
+        b_max_str='C'
+    
+    if b_j>b_max:
+        b_max=b_j
+        b_max_str='J'
+        
     print win,ping,lose
     print lose,ping,win
-    print get_most_one(a_win),get_most_one(b_win)
+    print a_max_str,b_max_str
