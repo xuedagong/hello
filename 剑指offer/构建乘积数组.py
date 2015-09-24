@@ -17,9 +17,13 @@ class Solution:
             temp=temp*A[i]
             b_lst.append(temp)
         print b_lst
+        #这个时候的 bi = a0*a1..*ai-1
+
+
         for i in xrange(1,len(A)):
             for j in xrange(i):
                 b_lst[j]*=A[i]
+        #这一步把bi得后半部分补回来 bi=bi* a(i+1)*a(i+2)*.....*a(n-1)
         return b_lst
 
 if __name__ == '__main__':
