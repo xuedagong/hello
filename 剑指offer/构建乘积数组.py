@@ -9,18 +9,20 @@ class Solution:
     def multiply(self, A):
         # write code here
         b_lst=[]
+        n=len(A)
         temp=1
         #首先计算出b0的值
-
-        for i in xrange(1,len(A)):
+        b_lst.append(1)
+        for i in xrange(0,len(A)-1):
             temp=temp*A[i]
-        b0=temp
-        b_lst.append(b0)
-        j=1
-        while j<len(A):
-            temp=temp*
-            b_lst.append()
+            b_lst.append(temp)
+        print b_lst
+        for i in xrange(1,len(A)):
+            for j in xrange(i):
+                b_lst[j]*=A[i]
         return b_lst
 
 if __name__ == '__main__':
     print Solution().multiply([1,2,3])
+    print Solution().multiply([1,2,3,4,5])
+    print Solution().multiply([1])
