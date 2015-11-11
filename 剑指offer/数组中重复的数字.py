@@ -12,17 +12,15 @@ class Solution:
     def duplicate(self, numbers, duplication):
         # write code here
         a=numbers[0]
-        for i in xrange(1,len(numbers)):
-            a=a^numbers[i]
-            if a==0:
+        dicts={}
+        for i in xrange(len(numbers)):
+            if numbers[i] in dicts:
                 duplication.append(numbers[i])
-                print numbers[i]
-                return True
+                return True,duplication
+            else:
+                dicts[ numbers[i] ]=1
         return False
 
 if __name__ == '__main__':
     lst=[]
-    print 1&4&4
-    exit(0)
-    print Solution().duplicate([2,3,2],lst)
-    print lst[0]
+    print Solution().duplicate([2,1,3,1,4],lst)
