@@ -1,0 +1,9 @@
+ 通过终端来连接的linux的时候，会执行某些特定的bash脚本，
+/etc/profile
+以及/etc/profile.d/*.sh下面以 .sh 结尾的脚本
+~/.bash_profile ~/.bash_login ~/profile(只依次读取其中一个)
+
+数据流重定向和管道命令
+标准输入输出和错误输出
+
+
